@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\PemasukanController;
 use App\Http\Controllers\admin\PengeluaranController;
 use App\Http\Controllers\admin\RiwayatController;
 use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\super\SuperController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,16 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 Route::middleware(['auth'])->prefix('super')->group(function () {
     Route::get('/dashboard', [SuperController::class, 'index'])->name('dashboard');
     Route::resource('Riwayat', RiwayatController::class);
+});
+
+Route::middleware(['auth'])->prefix('manajer')->group(function () {
+    Route::get('/dashboard', [ManagerController::class, 'index'])->name('manajer.index');
+    Route::get('/pengeluaran', [ManagerController::class, 'create'])->name('manager.create');
+    Route::get('/pemasukan', [ManagerController::class, 'create2'])->name('manager.create2');
+    Route::get('/edit', [ManagerController::class, 'edit'])->name('manager.edit');
+    Route::get('/edit2', [ManagerController::class, 'edit2'])->name('manager.edit2');
+    Route::get('/edit21', [ManagerController::class, 'edit21'])->name('manager.edit21');
+    Route::get('/edit22', [ManagerController::class, 'edit22'])->name('manager.edit22');
 });
 
 

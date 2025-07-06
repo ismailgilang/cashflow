@@ -89,6 +89,9 @@
                     <option value="super">
                         Super Admin
                     </option>
+                    <option value="manajer">
+                        Manager
+                    </option>
                 </select>
                 <x-input-error class="mt-2" :messages="$errors->get('role')" />
             </div>

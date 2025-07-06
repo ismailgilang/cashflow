@@ -106,7 +106,7 @@
         <form method="POST" action="{{ route('Pemasukan.store') }}" class="p-6">
             @csrf
             <h2 class="text-lg font-medium text-black">Tambah Pemasukan Baru</h2>
-
+            <input type="hidden" name="status" value="pending">
             <div class="mt-4">
                 <label for="keteranganSelect" class="block text-gray-700 text-sm font-bold mb-2">
                     Keterangan

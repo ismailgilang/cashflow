@@ -128,7 +128,7 @@
                                             + $data->sum('pemindahan');
                         @endphp
                         <tr class="font-bold bg-purple-500/40">
-                            <td colspan="17" class="text-left p-2 border">Saldo Pemasukan</td>
+                            <td colspan="17" class="text-left p-2 border">Saldo Pengeluaran</td>
                             <td class="p-2 border font-bold">Rp.{{ number_format($totalPengeluaran, 0, ',', '.') }}</td>
                             <td class="p-2 border"></td>
                         </tr>
@@ -142,6 +142,7 @@
             @csrf
             <h2 class="text-lg font-medium text-black">Tambah Pengeluaran Baru</h2>
 
+            <input type="hidden" name="status" value="pending">
             <div class="mt-4">
                 <label for="keteranganSelect" class="block text-gray-700 text-sm font-bold mb-2">
                     Keterangan

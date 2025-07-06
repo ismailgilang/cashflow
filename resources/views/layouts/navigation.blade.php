@@ -105,6 +105,7 @@
         </div>
         @endif
 
+        @if(auth()->user()->role === 'admin' || auth()->user()->role === 'super')
         <div class="group relative w-full">
             <a href="{{route('Riwayat.index')}}" class="flex flex-col items-center w-full py-3 hover:bg-gray-800 hover:text-blue-400">
                 <i class="fas fa-history text-xl"></i>
@@ -113,8 +114,41 @@
                 Riwayat
             </div>
         </div>
-    </nav>
+        @endif
 
+        @if(auth()->user()->role === 'manajer')
+            <div x-data="{ openTransaksi: false }" class="relative w-full group">
+                <!-- Tombol Transaksi dengan hover text animasi -->
+                <button @click="openTransaksi = !openTransaksi"
+                    class="flex flex-col items-center w-full py-3 hover:bg-gray-800 focus:outline-none relative group">
+                    <i class="fa-regular text-xl fa-circle-check group-hover:text-blue-400"></i>
+                    <div class="absolute top-0 left-20 h-full bg-gray-800 text-white text-sm flex items-center px-4 rounded-r opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300 z-50">
+                        Legalisasi Transaksi
+                    </div>
+                </button>
+
+                <!-- Dropdown submenu muncul ke bawah tombol -->
+                <div x-show="openTransaksi" x-transition
+                    class="w-full mt-1 space-y-1 flex flex-col items-center"
+                    style="display: none;">
+                    <a href="{{route('manager.create2')}}"
+                        class="flex flex-col items-center w-full py-3 hover:bg-gray-800 transition duration-150">
+                        <i class="fas fa-arrow-circle-down text-blue-400 text-xl"></i>
+                        <span class="text-[10px] mt-1 hidden xl:block text-gray-300">
+                            Pemasukan
+                        </span>
+                    </a>
+                    <a href="{{route('manager.create')}}"
+                        class="flex flex-col items-center w-full py-3 hover:bg-gray-800 transition duration-150">
+                        <i class="fas fa-arrow-circle-up text-red-400 text-xl"></i>
+                        <span class="text-[10px] mt-1 hidden xl:block text-gray-300">
+                            Pengeluaran
+                        </span>
+                    </a>
+                </div>
+            </div>
+        @endif
+    </nav>
     <div class="flex-grow"></div>
 
     <!-- Profile -->
