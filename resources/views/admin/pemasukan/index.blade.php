@@ -42,6 +42,7 @@
                             <th class="p-2 border text-center">Investor</th>
                             <th class="p-2 border text-center">Refund</th>
                             <th class="p-2 border text-center">Pemindahan Dana</th>
+                            <th class="p-2 border text-center">Status</th>
                             <th class="p-2 border text-center">Tools</th>
                         </tr>
                     </thead>
@@ -57,6 +58,17 @@
                             <td class="p-2 border">Rp.{{ number_format($item->investor, 0, ',', '.') }}</td>
                             <td class="p-2 border">Rp.{{ number_format($item->refund, 0, ',', '.') }}</td>
                             <td class="p-2 border">Rp.{{ number_format($item->pemindahan_dana, 0, ',', '.') }}</td>
+                            <td class="p-2 border text-center">
+                                @if($item->status === 'disetujui')
+                                    <span class="inline-block px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">Disetujui</span>
+                                @elseif($item->status === 'ditolak')
+                                    <span class="inline-block px-2 py-1 text-xs font-semibold text-red-700 bg-red-100 rounded-full">Ditolak</span>
+                                @elseif($item->status === 'pending')
+                                    <span class="inline-block px-2 py-1 text-xs font-semibold text-yellow-700 bg-yellow-100 rounded-full">Pending</span>
+                                @else
+                                    <span class="inline-block px-2 py-1 text-xs font-semibold text-gray-700 bg-gray-100 rounded-full">{{ ucfirst($item->status) }}</span>
+                                @endif
+                            </td>
                             <td class="p-2 border text-center">
                                 <!-- Tombol Edit -->
                                 <div class="flex gap-2">
