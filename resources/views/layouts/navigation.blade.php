@@ -152,9 +152,9 @@
     <div class="flex-grow"></div>
 
     <!-- Profile -->
-    <form method="POST" action="{{ route('logout') }}" class="group relative w-full mb-4">
+    <form method="POST" id="logout-form" action="{{ route('logout') }}" class="group relative w-full mb-4">
         @csrf
-        <button type="submit" class="flex flex-col items-center w-full py-3 hover:bg-gray-800 hover:text-blue-400 focus:outline-none">
+        <button type="button" class="flex flex-col items-center w-full py-3 hover:bg-gray-800 hover:text-blue-400 focus:outline-none" onclick="confirmLogout()">
             <i class="fas fa-right-from-bracket text-2xl text-gray-400 group-hover:text-blue-400"></i>
         </button>
         <div class="absolute top-0 left-20 h-full bg-gray-800 text-white text-sm flex items-center px-4 rounded-r opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300 z-50">

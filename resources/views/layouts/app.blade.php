@@ -60,6 +60,20 @@
                 });
         }
     </script>
+    <script>
+        function confirmLogout() {
+            alertify.confirm('Konfirmasi Logout', 'Apakah Anda yakin ingin Logout?',
+                function() {
+                    // Jika klik OK, submit form
+                    document.getElementById('logout-form').submit();
+                    alertify.success('Data berhasil dihapus!');
+                },
+                function() {
+                    // Jika klik Cancel
+                    alertify.error('Penghapusan dibatalkan');
+                });
+        }
+    </script>
 </body>
 
 </html>
