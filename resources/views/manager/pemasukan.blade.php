@@ -55,7 +55,6 @@
                             <td class="p-2 border">Rp.{{ number_format($item->refund, 0, ',', '.') }}</td>
                             <td class="p-2 border">Rp.{{ number_format($item->pemindahan_dana, 0, ',', '.') }}</td>
                             <td class="p-2 border text-center">
-                            <td class="p-2 border text-center">
                                 @if($item->status === 'disetujui')
                                     <span class="inline-block px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">Disetujui</span>
                                 @elseif($item->status === 'ditolak')

@@ -77,7 +77,7 @@ class ManagerController extends Controller
     {
         $data = Pemasukan::find($id);
         $data->status = "disetujui";
-        $data->save(); // Penting: menyimpan perubahan
+        $data->update(); // Penting: menyimpan perubahan
 
         return redirect()->route('manager.create2')->with('success', 'Data berhasil disetujui.');
     }
@@ -85,7 +85,7 @@ class ManagerController extends Controller
     {
         $data = Pengeluaran::find($id);
         $data->status = "disetujui";
-        $data->save(); // Penting: menyimpan perubahan
+        $data->update(); // Penting: menyimpan perubahan
 
         return redirect()->route('manager.create')->with('success', 'Data berhasil disetujui.');
     }
@@ -94,7 +94,7 @@ class ManagerController extends Controller
     {
         $data = Pemasukan::find($id);
         $data->status = "ditolak";
-        $data->save(); // Penting: menyimpan perubahan
+        $data->update(); // Penting: menyimpan perubahan
 
         return redirect()->route('manager.create2')->with('success', 'Data berhasil disetujui.');
     }
@@ -102,7 +102,7 @@ class ManagerController extends Controller
     {
         $data = Pengeluaran::find($id);
         $data->status = "ditolak";
-        $data->save(); // Penting: menyimpan perubahan
+        $data->update(); // Penting: menyimpan perubahan
 
         return redirect()->route('manager.create')->with('success', 'Data berhasil disetujui.');
     }

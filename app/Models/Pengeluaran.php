@@ -23,6 +23,7 @@ class Pengeluaran extends Model
         'profit',
         'cicilan',
         'pajak',
-        'pemindahan'
+        'pemindahan',
+        'status'
     ];
 }

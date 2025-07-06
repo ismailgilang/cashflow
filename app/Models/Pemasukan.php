@@ -14,6 +14,7 @@ class Pemasukan extends Model
         'omset_retail',
         'investor',
         'refund',
-        'pemindahan_dana'
+        'pemindahan_dana',
+        'status'
     ];
 }

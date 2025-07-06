@@ -127,37 +127,37 @@
 
             <div class="mt-4">
                 <x-input-label for="tanggal" value="tanggal" />
-                <x-text-input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full" required />
+                <x-text-input id="tanggal" name="tanggal" type="date" class="mt-1 block w-full" />
                 <x-input-error class="mt-2" :messages="$errors->get('tanggal')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="omset_konter" value="omset_konter" />
-                <x-text-input id="omset_konter" name="omset_konter" type="text" class="mt-1 block w-full" required />
+                <x-text-input id="omset_konter" name="omset_konter" type="text" class="mt-1 block w-full" />
                 <x-input-error class="mt-2" :messages="$errors->get('omset_konter')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="omset_retail" value="omset_retail" />
-                <x-text-input id="omset_retail" name="omset_retail" type="text" class="mt-1 block w-full" required />
+                <x-text-input id="omset_retail" name="omset_retail" type="text" class="mt-1 block w-full" />
                 <x-input-error class="mt-2" :messages="$errors->get('omset_retail')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="investor" value="investor" />
-                <x-text-input id="investor" name="investor" type="text" class="mt-1 block w-full" required />
+                <x-text-input id="investor" name="investor" type="text" class="mt-1 block w-full" />
                 <x-input-error class="mt-2" :messages="$errors->get('investor')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="refund" value="refund" />
-                <x-text-input id="refund" name="refund" type="text" class="mt-1 block w-full" required />
+                <x-text-input id="refund" name="refund" type="text" class="mt-1 block w-full" />
                 <x-input-error class="mt-2" :messages="$errors->get('refund')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="pemindahan_dana" value="pemindahan_dana" />
-                <x-text-input id="pemindahan_dana" name="pemindahan_dana" type="text" class="mt-1 block w-full" required />
+                <x-text-input id="pemindahan_dana" name="pemindahan_dana" type="text" class="mt-1 block w-full" />
                 <x-input-error class="mt-2" :messages="$errors->get('pemindahan_dana')" />
             </div>
 
