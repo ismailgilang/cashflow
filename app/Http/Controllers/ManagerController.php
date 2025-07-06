@@ -90,7 +90,7 @@ class ManagerController extends Controller
         return redirect()->route('manager.create')->with('success', 'Data berhasil disetujui.');
     }
 
-    public function edit12(string $id)
+    public function edit21(string $id)
     {
         $data = Pemasukan::find($id);
         $data->status = "ditolak";
