@@ -43,14 +43,14 @@
         @endif
 
         @if(auth()->user()->role === 'admin')
-        <div class="group relative w-full">
+        <!-- <div class="group relative w-full">
             <a href="{{ route('Users.index')}}" class="flex flex-col items-center w-full py-3 hover:bg-gray-800 hover:text-blue-400">
                 <i class="fas fa-users text-xl"></i>
             </a>
             <div class="absolute top-0 left-20 h-full bg-gray-800 text-white text-sm flex items-center px-4 rounded-r opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300 z-50">
                 User
             </div>
-        </div>
+        </div> -->
 
 
         <div class="group relative w-full">
