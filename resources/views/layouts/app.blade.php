@@ -66,11 +66,11 @@
                 function() {
                     // Jika klik OK, submit form
                     document.getElementById('logout-form').submit();
-                    alertify.success('Data berhasil dihapus!');
+                    alertify.success('Berhasil Logout!');
                 },
                 function() {
                     // Jika klik Cancel
-                    alertify.error('Penghapusan dibatalkan');
+                    alertify.error('Logout Dibatalkan');
                 });
         }
     </script>
