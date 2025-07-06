@@ -21,6 +21,7 @@ class PengeluaranController extends Controller
 
         $data = Pengeluaran::whereMonth('tanggal', $date->month)
                         ->whereYear('tanggal', $date->year)
+                        ->where('status', 'disetujui')
                         ->get();
         $data2 = Kode::all();
         return view('admin.pengeluaran.index', compact('data', 'data2'));

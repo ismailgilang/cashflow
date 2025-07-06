@@ -23,6 +23,7 @@ class PemasukanController extends Controller
 
         $data = Pemasukan::whereMonth('tanggal', $date->month)
                         ->whereYear('tanggal', $date->year)
+                        ->where('status', 'disetujui')
                         ->get();
 
         $data2 = Kode::all();
