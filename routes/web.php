@@ -36,10 +36,10 @@ Route::middleware(['auth'])->prefix('manajer')->group(function () {
     Route::get('/dashboard', [ManagerController::class, 'index'])->name('manajer.index');
     Route::get('/pengeluaran', [ManagerController::class, 'create'])->name('manager.create');
     Route::get('/pemasukan', [ManagerController::class, 'create2'])->name('manager.create2');
-    Route::get('/edit', [ManagerController::class, 'edit'])->name('manager.edit');
-    Route::get('/edit2', [ManagerController::class, 'edit2'])->name('manager.edit2');
-    Route::get('/edit21', [ManagerController::class, 'edit21'])->name('manager.edit21');
-    Route::get('/edit22', [ManagerController::class, 'edit22'])->name('manager.edit22');
+    Route::get('/edit/{id}', [ManagerController::class, 'edit'])->name('manager.edit');
+    Route::get('/edit2/{id}', [ManagerController::class, 'edit2'])->name('manager.edit2');
+    Route::get('/edit21/{id}', [ManagerController::class, 'edit21'])->name('manager.edit21');
+    Route::get('/edit22/{id}', [ManagerController::class, 'edit22'])->name('manager.edit22');
 });
 
 
