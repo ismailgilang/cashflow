@@ -25,8 +25,7 @@ class PemasukanController extends Controller
                         ->whereYear('tanggal', $date->year)
                         ->where('status', 'disetujui')
                         ->get();
-
-        $data2 = Kode::all();
+        $data2 = Kode::where('kode_akun', 'LIKE', '01%')->get();
 
         return view('admin.pemasukan.index', compact('data', 'data2', 'periode'));
     }
@@ -36,7 +35,7 @@ class PemasukanController extends Controller
         $data = $request->all();
         // Contoh: simpan ke database jika kamu punya model Kode
         Pemasukan::create($data);
-        return redirect()->back()->with('success', 'Data berhasil disimpan!');
+        return redirect()->back()->with('success', 'Data berhasil di kirim Ke Manager');
     }
 
     public function edit($id)

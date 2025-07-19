@@ -16,7 +16,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <style>
+        /* Ubah warna success */
+        .alertify .ajs-message.ajs-success {
+            background-color: #dcbbfc !important; /* biru tua */
+            color: #fff !important;
+        }
 
+        /* Ubah warna error */
+        .alertify .ajs-message.ajs-error {
+            background-color: #b91c1c !important; /* merah tua */
+            color: #fff !important;
+        }
+    </style>
 
 
 
@@ -74,6 +86,18 @@
                 });
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+                alertify.success("{{ session('success') }}");
+            @endif
+
+            @if(session('error'))
+                alertify.error("{{ session('error') }}");
+            @endif
+        });
+    </script>
+
 </body>
 
 </html>

@@ -48,13 +48,12 @@ class LaporanController extends Controller
         $transportasi = $data2->sum('transportasi');
         $biayaKirim = $data2->sum('biaya_kirim');
         $lainLain = $data2->sum('lain_lain');
-        $pengeluarankas = $data->sum('investor');
+        $pengeluarankas = $data2->sum('invest');
         $cicilan = $data2->sum('cicilan');
         $refund = $data->sum('refund');
         $pemindahan = $data->sum('pemindahan_dana');
 
         $omsetretail = $retail + $pengeluarankas + $refund + $pemindahan;
-        $kotor = ($yogya + $omsetretail) * 0.65;
 
         $gaji = $data2->sum('gaji');
         $operasional = $data2->sum('atk') + $peralatan + $data2->sum('lpti');
@@ -65,7 +64,6 @@ class LaporanController extends Controller
             'data2',
             'yogya',
             'retail',
-            'kotor',
             'gaji',
             'operasional',
             'operasionalLain',

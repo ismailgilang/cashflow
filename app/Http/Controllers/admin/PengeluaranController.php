@@ -23,7 +23,7 @@ class PengeluaranController extends Controller
                         ->whereYear('tanggal', $date->year)
                         ->where('status', 'disetujui')
                         ->get();
-        $data2 = Kode::all();
+        $data2 = Kode::where('kode_akun', 'LIKE', '02%')->get();
         return view('admin.pengeluaran.index', compact('data', 'data2'));
     }
 
@@ -32,7 +32,7 @@ class PengeluaranController extends Controller
         $data = $request->all();
         // Contoh: simpan ke database jika kamu punya model Kode
         Pengeluaran::create($data);
-        return redirect()->back()->with('success', 'Data berhasil disimpan!');
+        return redirect()->back()->with('success', 'Data berhasil di kirim Ke Manager');
     }
 
     public function edit($id)

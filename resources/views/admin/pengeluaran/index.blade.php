@@ -1,3 +1,48 @@
+<style>
+    .custom-select-container {
+        position: relative;
+        width: 100%;
+    }
+    .custom-select-display {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px;
+        background: #fff;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .custom-select-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-top: none;
+        max-height: 200px;
+        overflow-y: auto;
+        display: none;
+        z-index: 999;
+    }
+    .custom-select-dropdown.show {
+        display: block;
+    }
+    .custom-select-search {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px;
+        border-bottom: 1px solid #ccc;
+    }
+    .custom-select-option {
+        padding: 8px;
+        cursor: pointer;
+    }
+    .custom-select-option:hover {
+        background: #f0f0f0;
+    }
+</style>
 <x-app-layout>
     <div class="ml-20 p-6 bg-gray-100 min-h-screen">
         <h1 class="text-3xl font-semibold mb-6 text-gray-800">Pengeluaran</h1>
@@ -159,15 +204,25 @@
                 <label for="keteranganSelect" class="block text-gray-700 text-sm font-bold mb-2">
                     Keterangan
                 </label>
-                <select id="keteranganSelect" name="keterangan_field_display" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" required>
-                    <option value="">-- Pilih Keterangan --</option>
-                    @foreach($data2 as $d)
-                    <!-- Nilai option akan berisi 'kode_akun,keterangan' yang akan dipisahkan oleh JavaScript -->
-                    <option value="{{$d->kode_akun}},{{$d->keterangan}}">{{$d->kode_akun}} | {{$d->keterangan}}</option>
-                    @endforeach
-                </select>
 
-                <!-- Hidden Inputs untuk menyimpan kode_akun dan keterangan secara terpisah -->
+                <!-- Custom Select -->
+                <div class="custom-select-container" id="customSelect">
+                    <div class="custom-select-display" id="customSelectDisplay">
+                        -- Pilih Keterangan --
+                    </div>
+                    <div class="custom-select-dropdown" id="customSelectDropdown">
+                        <input type="text" class="custom-select-search" placeholder="Cari...">
+                        <div id="customSelectOptions">
+                            @foreach($data2 as $d)
+                                <div class="custom-select-option" data-value="{{$d->kode_akun}},{{$d->keterangan}}">
+                                    {{$d->kode_akun}} | {{$d->keterangan}}
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Inputs -->
                 <input type="hidden" id="hidden_kode_akun" name="kode_akun">
                 <input type="hidden" id="hidden_keterangan" name="keterangan">
             </div>
@@ -282,45 +337,55 @@
         });
     </script>
     <script>
-        // Ambil referensi ke elemen select dan input hidden
-        const keteranganSelect = document.getElementById('keteranganSelect');
+        const customSelect = document.getElementById('customSelect');
+        const display = document.getElementById('customSelectDisplay');
+        const dropdown = document.getElementById('customSelectDropdown');
+        const searchInput = dropdown.querySelector('.custom-select-search');
+        const optionsContainer = document.getElementById('customSelectOptions');
         const hiddenKodeAkun = document.getElementById('hidden_kode_akun');
         const hiddenKeterangan = document.getElementById('hidden_keterangan');
 
-        // Tambahkan event listener untuk mendengarkan perubahan pada select
-        keteranganSelect.addEventListener('change', function() {
-            const selectedValue = this.value; // Ambil nilai dari option yang terpilih
+        // Toggle dropdown
+        display.addEventListener('click', () => {
+            dropdown.classList.toggle('show');
+            searchInput.value = '';
+            filterOptions('');
+            searchInput.focus();
+        });
 
-            if (selectedValue) {
-                // Jika ada nilai yang dipilih (bukan option placeholder)
-                // Pisahkan string berdasarkan koma
-                const parts = selectedValue.split(',');
-
-                // Pastikan ada dua bagian (kode_akun dan keterangan)
-                if (parts.length === 2) {
-                    // Isi nilai ke input hidden, trim untuk menghilangkan spasi berlebih
-                    hiddenKodeAkun.value = parts[0].trim();
-                    hiddenKeterangan.value = parts[1].trim();
-                } else {
-                    // Handle kasus jika format nilai tidak sesuai (misalnya, hanya ada satu bagian)
-                    console.warn('Format nilai option tidak sesuai: ' + selectedValue);
-                    hiddenKodeAkun.value = '';
-                    hiddenKeterangan.value = '';
-                }
-            } else {
-                hiddenKodeAkun.value = '';
-                hiddenKeterangan.value = '';
+        // Klik di luar custom select untuk menutup dropdown
+        document.addEventListener('click', (e) => {
+            if (!customSelect.contains(e.target)) {
+                dropdown.classList.remove('show');
             }
         });
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cek apakah ada option yang sudah terpilih secara default
-            const initialSelectedValue = keteranganSelect.value;
-            if (initialSelectedValue) {
-                const parts = initialSelectedValue.split(',');
-                if (parts.length === 2) {
-                    hiddenKodeAkun.value = parts[0].trim();
-                    hiddenKeterangan.value = parts[1].trim();
-                }
+
+        // Filter saat mengetik
+        searchInput.addEventListener('input', () => {
+            const term = searchInput.value.toLowerCase();
+            filterOptions(term);
+        });
+
+        // Fungsi filter opsi
+        function filterOptions(term) {
+            const options = optionsContainer.querySelectorAll('.custom-select-option');
+            options.forEach(option => {
+                const text = option.textContent.toLowerCase();
+                option.style.display = text.includes(term) ? '' : 'none';
+            });
+        }
+
+        // Klik pada opsi
+        optionsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('custom-select-option')) {
+                const value = e.target.getAttribute('data-value');
+                display.textContent = e.target.textContent;
+                dropdown.classList.remove('show');
+
+                // Set hidden inputs
+                const [kode, ket] = value.split(',');
+                hiddenKodeAkun.value = kode.trim();
+                hiddenKeterangan.value = ket.trim();
             }
         });
     </script>

@@ -1,28 +1,14 @@
 <x-app-layout>
     <div class="ml-20 p-6 bg-gray-100 min-h-screen">
         <h1 class="text-3xl font-semibold mb-6 text-gray-800">Dashboard</h1>
+        <div class="w-full h-34 bg-purple-500/40 rounded-md p-4">
+            <h1 class="text-center text-[24px] text-white">Selamat Datang !</h1>
+            <p class="text-white text-center text-[16px]"> Di Aplikasi Cashflow CV. Zelia Indonesia</p>
+            <p class="text-white text-center text-[16px]"></p>
+        </div>
 
         <!-- Cards summary -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-            <!-- Saldo -->
-            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
-                <div class="text-blue-500 text-4xl mb-3">
-                    <i class="fas fa-wallet"></i>
-                </div>
-                <h2 class="text-lg font-semibold mb-1">Saldo</h2>
-                <form method="GET" action="{{ route('admin.index') }}" class="mb-4">
-                    @csrf
-                    <select name="filter" onchange="this.form.submit()" class="border rounded px-3 py-1 text-sm">
-                        <option value="" {{ request('filter') == '' ? 'selected' : '' }}>Semua Data</option>
-                        <option value="bulan" {{ request('filter') == 'bulan' ? 'selected' : '' }}>Bulan Ini</option>
-                        <option value="triwulan" {{ request('filter') == 'triwulan' ? 'selected' : '' }}>Triwulan (3 Bulan Terakhir)</option>
-                        <option value="tahun" {{ request('filter') == 'tahun' ? 'selected' : '' }}>Tahun Ini</option>
-                    </select>
-                </form>
-                <p class="text-2xl font-bold text-gray-700">Rp {{ number_format($saldo, 0, ',', '.') }}</p>
-            </div>
-
-
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8 mt-4">
 
             <!-- Pemasukan -->
             <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
@@ -42,7 +28,22 @@
                 <p class="text-2xl font-bold text-gray-700">Rp {{ number_format($saldominus, 0, ',', '.') }}</p>
             </div>
 
-            <!-- Selisih -->
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <div class="text-blue-500 text-4xl mb-3">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h2 class="text-lg font-semibold mb-1">Saldo</h2>
+                <form method="GET" action="{{ route('admin.index') }}" class="mb-4">
+                    @csrf
+                    <select name="filter" onchange="this.form.submit()" class="border rounded px-3 py-1 text-sm">
+                        <option value="" {{ request('filter') == '' ? 'selected' : '' }}>Semua Data</option>
+                        <option value="bulan" {{ request('filter') == 'bulan' ? 'selected' : '' }}>Bulan Ini</option>
+                        <option value="triwulan" {{ request('filter') == 'triwulan' ? 'selected' : '' }}>Triwulan (3 Bulan Terakhir)</option>
+                        <option value="tahun" {{ request('filter') == 'tahun' ? 'selected' : '' }}>Tahun Ini</option>
+                    </select>
+                </form>
+                <p class="text-2xl font-bold text-gray-700">Rp {{ number_format($saldo, 0, ',', '.') }}</p>
+            </div>
             <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
                 <div class="text-yellow-500 text-4xl mb-3">
                     <i class="fas fa-chart-line"></i>
@@ -50,6 +51,8 @@
                 <h2 class="text-lg font-semibold mb-1">Laba / Rugi Bulan Ini</h2>
                 <p class="text-2xl font-bold text-gray-700">Rp {{ number_format($labaRugiBulanIni, 0, ',', '.') }}</p>
             </div>
+
+            
         </div>
 
         <!-- Grafik dan Ringkasan -->

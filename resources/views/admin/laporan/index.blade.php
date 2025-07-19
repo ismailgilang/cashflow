@@ -41,8 +41,12 @@
 
                 <div class="mb-4">
                     <h3 class="font-semibold">PENDAPATAN</h3>
-                    <div class="flex justify-between"><span>Yogya Dept Store</span><span>Rp.{{ number_format($yogya, 0, ',', '.') }}</span></div>
-                    <div class="flex justify-between"><span>Retail & Online</span><span>Rp.{{ number_format($omsetretail, 0, ',', '.') }}</span></div>
+                    <div class="flex justify-between"><span>Yogya Dept Store</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-yogya')">Rp.{{ number_format($yogya, 0, ',', '.') }}</button></span>
+                    </div>
+                    <div class="flex justify-between"><span>Retail & Online</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-retail')">Rp.{{ number_format($omsetretail, 0, ',', '.') }}</button></span>
+                    </div>
                     <div class="flex justify-between font-semibold border-t border-black mt-1 pt-1">
                         <span>Jumlah Pendapatan</span><span>Rp.{{ number_format($yogya + $omsetretail, 0, ',', '.') }}</span>
                     </div>
@@ -59,32 +63,36 @@
                 </div>
 
                 <div class="mb-4">
-                    <h3 class="font-semibold">HARGA POKOK PENJUALAN</h3>
                     <div class="flex justify-between">
-                        <span>Laba Kotor</span><span>Rp.{{ number_format($kotor, 0, ',', '.') }}</span>
+                        <span class="font-bold">Harga Pokok Penjualan</span><span>Rp.{{ number_format(($yogya + $omsetretail) * 0.65, 0, ',', '.') }}</span>
                     </div>
-                    <div class="flex justify-between font-semibold">
-                        <span>Selisih</span>
-                        <span>Rp.{{ number_format(($yogya + $omsetretail) - $kotor, 0, ',', '.') }}</span>
+                    <div class="flex justify-between">
+                        <span>Laba Kotor</span><span>Rp.{{ number_format(($yogya + $omsetretail) - (($yogya + $omsetretail) * 0.65), 0, ',', '.') }}</span>
                     </div>
                 </div>
 
                 <div class="mb-4">
                     <h3 class="font-semibold">BIAYA OPERASIONAL</h3>
-                    <div class="flex justify-between"><span>B. Gaji</span><span>Rp.{{ number_format($gaji, 0, ',', '.') }}</span></div>
-                    <div class="flex justify-between"><span>B. Operasional</span><span>Rp.{{ number_format($operasional, 0, ',', '.') }}</span></div>
+                    <div class="flex justify-between"><span>B. Gaji</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-gaji')">Rp.{{ number_format($gaji, 0, ',', '.') }}</button></span>
+                    </div>
+                    <div class="flex justify-between"><span>B. Operasional</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-oprational')">Rp.{{ number_format($operasional, 0, ',', '.') }}</button></span>
+                    </div>
                     <div class="flex justify-between"><span>B. Penyusutan</span><span>-</span></div>
                     <div class="flex justify-between"><span>B. Maintanance</span><span>-</span></div>
                     <div class="flex justify-between"><span>B. Pengurusan & Perijinan</span><span>-</span></div>
                     <div class="flex justify-between"><span>B. Sewa</span><span>-</span></div>
-                    <div class="flex justify-between"><span>B. Operasional Lainnya</span><span>Rp.{{ number_format($operasionalLain, 0, ',', '.') }}</span></div>
+                    <div class="flex justify-between"><span>B. Operasional Lainnya</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-lainya')">Rp.{{ number_format($operasionalLain, 0, ',', '.') }}</button></span>
+                    </div>
                     <div class="flex justify-between font-semibold border-t border-black mt-1 pt-1">
                         <span>Jumlah Biaya Operasional</span>
                         <span>Rp.{{ number_format($gaji + $operasional + $operasionalLain, 0, ',', '.') }}</span>
                     </div>
                     <div class="flex justify-between font-semibold text-red-600">
                         <span>Laba Usaha</span>
-                        <span>Rp.{{ number_format((($yogya + $omsetretail) - $kotor) - ($gaji + $operasional + $operasionalLain), 0, ',', '.') }}</span>
+                        <span>Rp.{{ number_format(($yogya + $omsetretail) - (($yogya + $omsetretail) * 0.65) - ($gaji + $operasional + $operasionalLain), 0, ',', '.') }}</span>
                     </div>
                 </div>
 
@@ -104,7 +112,7 @@
                     </div>
                     <div class="flex justify-between font-bold text-red-600">
                         <span>LABA BERSIH SEBELUM PAJAK</span>
-                        <span>Rp.{{ number_format((($yogya + $omsetretail) - $kotor) - ($gaji + $operasional + $operasionalLain), 0, ',', '.') }}</span>
+                        <span>Rp.{{ number_format(($yogya + $omsetretail) - (($yogya + $omsetretail) * 0.65) - ($gaji + $operasional + $operasionalLain), 0, ',', '.') }}</span>
                     </div>
                 </div>
             </div>
@@ -122,31 +130,404 @@
                     <h2 class="font-semibold mb-2">Aktifitas Operasional</h2>
 
                     <h3 class="font-medium">A. Penerimaan Kas Dari :</h3>
-                    <div class="flex justify-between"><span>Omset Dari Mall</span><span>Rp.{{ number_format($yogya, 0, ',', '.') }}</span></div>
-                    <div class="flex justify-between"><span>Penerimaan Lain</span><span>Rp.{{ number_format($omsetretail, 0, ',', '.') }}</span></div>
+                    <div class="flex justify-between"><span>Omset Dari Mall</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-yogya')">Rp.{{ number_format($yogya, 0, ',', '.') }}</button></span>
+                    </div>
+                    <div class="flex justify-between"><span>Penerimaan Lain</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-retail')">Rp.{{ number_format($omsetretail, 0, ',', '.') }}</button></span>
+                    </div>
                     <div class="flex justify-between font-semibold border-t border-black mt-1 pt-1"><span>Total Penerimaan</span><span>{{ number_format($yogya + $omsetretail, 0, ',', '.') }}</span></div>
                 </div>
 
                 <div class="mb-6">
                     <h3 class="font-medium">B. Pengeluaran Kas :</h3>
-                    <div class="flex justify-between"><span>Pembelian Bahan</span><span>Rp.{{ number_format($bahan, 0, ',', '.') }}</span></div>
-                    <div class="flex justify-between"><span>Pembayaran Gaji</span><span>Rp.{{ number_format($gaji, 0, ',', '.') }}</span></div>
-                    <div class="flex justify-between"><span>Transportasi</span><span>Rp.{{ number_format($transportasi, 0, ',', '.') }}</span></div>
-                    <div class="flex justify-between"><span>Biaya Kirim</span><span>Rp.{{ number_format($biayaKirim, 0, ',', '.') }}</span></div>
-                    <div class="flex justify-between"><span>Pembayaran Jasa Vendor</span><span>Rp.{{ number_format($vendor, 0, ',', '.') }}</span></div>
-                    <div class="flex justify-between"><span>Lain-Lain</span><span>Rp.{{ number_format($lainLain, 0, ',', '.') }}</span></div>
+                    <div class="flex justify-between"><span>Pembelian Bahan</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-bahan')">Rp.{{ number_format($bahan, 0, ',', '.') }}</button></span>
+                    </div>
+                    <div class="flex justify-between"><span>Pembayaran Gaji</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-gaji')">Rp.{{ number_format($gaji, 0, ',', '.') }}</button></span>
+                    </div>
+                    <div class="flex justify-between"><span>Transportasi</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-transportasi')">Rp.{{ number_format($transportasi, 0, ',', '.') }}</button></span>
+                    </div>
+                    <div class="flex justify-between"><span>Biaya Kirim</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-kirim')">Rp.{{ number_format($biayaKirim, 0, ',', '.') }}</button></span>
+                    </div>
+                    <div class="flex justify-between"><span>Pembayaran Jasa Vendor</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-vendor')">Rp.{{ number_format($vendor, 0, ',', '.') }}</button></span>
+                    </div>
+                    <div class="flex justify-between"><span>Lain-Lain</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-lainya')">Rp.{{ number_format($lainLain, 0, ',', '.') }}</button></span>
+                    </div>
                     <div class="flex justify-between font-semibold border-t border-black mt-1 pt-1"><span>Total Pengeluaran</span><span>Rp.{{ number_format($bahan + $gaji + $transportasi + $biayaKirim + $vendor + $lainLain, 0, ',', '.') }}</span></div>
                 </div>
 
                 <div>
                     <h3 class="font-medium">C. Arus Kas Aktifitas Investasi :</h3>
                     <div class="flex justify-between"><span>Pengeluaran Kas</span><span>-</span></div>
-                    <div class="flex justify-between"><span>Pengembalian Investasi</span><span>Rp.{{ number_format($pengeluarankas, 0, ',', '.') }}</span></div>
+                    <div class="flex justify-between"><span>Pengembalian Investasi</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-investasi')">Rp.{{ number_format($pengeluarankas, 0, ',', '.') }}</button></span>
+                    </div>
                     <div class="flex justify-between"><span>Cicilan BRI</span><span>-</span></div>
-                    <div class="flex justify-between"><span>Cicilan ACC</span><span>Rp.{{ number_format($cicilan, 0, ',', '.') }}</span></div>
+                    <div class="flex justify-between"><span>Cicilan ACC</span>
+                        <span><button x-data="" x-on:click.prevent="$dispatch('open-modal', 'modal-acc')">Rp.{{ number_format($cicilan, 0, ',', '.') }}</button></span>
+                    </div>
                     <div class="flex justify-end font-semibold border-t border-black mt-1 pt-1"><span>Rp.{{ number_format($pengeluarankas + $cicilan, 0, ',', '.') }}</span></div>
                 </div>
             </div>
         </div>
     </div>
+    <x-modal name="modal-yogya" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Yogya Dept Store
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data as $d)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($d->omset_konter, 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+
+    <x-modal name="modal-retail" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Retail & Online
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data as $d)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($d->omset_retail + $d->investor + $d->refund + $d->pemindahan_dana , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-gaji" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Gaji
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->gaji , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-oprational" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Oprational
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->atk + $dd->peralatan + $dd->lpti , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-lainya" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Oprational Lainya
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->lain_lain , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-bahan" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Pembelian bahan
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->bahan , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-transportasi" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Tansportasi
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->transportasi , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-kirim" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Biaya Kirim
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->biaya_kirim , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-vendor" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Pembayaran Jasa Vendor
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->vendor , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-investasi" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Pembelian bahan
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->invest , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
+    <x-modal name="modal-acc" focusable>
+        <div class="px-4 py-6 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+                List Cicilan ACC
+            </h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
+                    <thead class="bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 uppercase">
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Kode Akun</th>
+                            <th class="px-4 py-2">Keterangan</th>
+                            <th class="px-4 py-2 text-right">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data2 as $dd)
+                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                    Rp {{ number_format($dd->cicilan , 0, ',', '.') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </x-modal>
 </x-app-layout>
