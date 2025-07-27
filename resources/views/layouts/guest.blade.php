@@ -15,10 +15,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 bg-white">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background-image: url('images/2.jpg'); background-size:cover;">
             <div>
                 <a href="/">
-                    <img src="{{asset('images/logozelia.jpg')}}" alt="" class="w-30 h-20">
+                    <img src="{{asset('images/logozelia.jpg')}}" alt="" class="w-30 h-20 rounded">
                 </a>
             </div>
 
