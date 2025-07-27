@@ -102,19 +102,32 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    <tr id="noDataRow" style="display: none;">
+                        <td colspan="4" class="text-center p-2 border">Data tidak ditemukan</td>
+                    </tr>
                 </table>
             </div>
         </div>
     </div>
     
     <script>
-        document.getElementById('searchInput').addEventListener('input', function() {
+         document.getElementById('searchInput').addEventListener('input', function() {
             let filter = this.value.toLowerCase();
             let rows = document.querySelectorAll('#kodeTable tr');
+            let found = false;
+
             rows.forEach(row => {
                 let text = row.innerText.toLowerCase();
-                row.style.display = text.includes(filter) ? '' : 'none';
+                if (text.includes(filter)) {
+                    row.style.display = '';
+                    found = true;
+                } else {
+                    row.style.display = 'none';
+                }
             });
+
+            // Tampilkan atau sembunyikan pesan "Data tidak ditemukan"
+            document.getElementById('noDataRow').style.display = found ? 'none' : '';
         });
     </script>
     <script>
