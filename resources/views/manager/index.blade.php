@@ -59,7 +59,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Grafik pemasukan/pengeluaran -->
             <div class="bg-white rounded-lg shadow p-6 col-span-2">
-                <h3 class="text-xl font-semibold mb-4">Grafik Pemasukan & Pengeluaran</h3>
+                <h3 class="text-xl font-semibold mb-4">Grafik Laba/Rugi</h3>
                 <!-- Placeholder grafik -->
                 <div class="w-full h-64 bg-gray-200 rounded flex items-center justify-center text-gray-400">
                     <canvas id="grafikLabaRugi" height="100"></canvas>
