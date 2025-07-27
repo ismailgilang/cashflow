@@ -42,7 +42,7 @@
                 <!-- Omset Konter Input -->
                 <div class="space-y-2">
                     <label for="omset_konter" class="block text-sm font-medium text-gray-700 300">Omset Konter</label>
-                    <input id="omset_konter" name="omset_konter" type="text" required
+                    <input id="omset_konter" name="omset_konter" type="text"
                         class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         value="{{ $pemasukan->omset_konter ?? '' }}">
                     @error('omset_konter')
@@ -53,7 +53,7 @@
                 <!-- Omset Retail Input -->
                 <div class="space-y-2">
                     <label for="omset_retail" class="block text-sm font-medium text-gray-700 300">Omset Retail</label>
-                    <input id="omset_retail" name="omset_retail" type="text" required
+                    <input id="omset_retail" name="omset_retail" type="text"
                         class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         value="{{ $pemasukan->omset_retail ?? '' }}">
                     @error('omset_retail')
@@ -64,7 +64,7 @@
                 <!-- Investor Input -->
                 <div class="space-y-2">
                     <label for="investor" class="block text-sm font-medium text-gray-700 300">Investor</label>
-                    <input id="investor" name="investor" type="text" required
+                    <input id="investor" name="investor" type="text"
                         class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         value="{{ $pemasukan->investor ?? '' }}">
                     @error('investor')
@@ -75,7 +75,7 @@
                 <!-- Refund Input -->
                 <div class="space-y-2">
                     <label for="refund" class="block text-sm font-medium text-gray-700 300">Refund</label>
-                    <input id="refund" name="refund" type="text" required
+                    <input id="refund" name="refund" type="text"
                         class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         value="{{ $pemasukan->refund ?? '' }}">
                     @error('refund')
@@ -86,7 +86,7 @@
                 <!-- Pemindahan Dana Input -->
                 <div class="space-y-2">
                     <label for="pemindahan_dana" class="block text-sm font-medium text-gray-700 300">Pemindahan Dana</label>
-                    <input id="pemindahan_dana" name="pemindahan_dana" type="text" required
+                    <input id="pemindahan_dana" name="pemindahan_dana" type="text"
                         class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         value="{{ $pemasukan->pemindahan_dana ?? '' }}">
                     @error('pemindahan_dana')
@@ -96,10 +96,7 @@
 
                 <!-- Action Buttons -->
                 <div class="flex justify-end space-x-3 pt-4">
-                    <button type="button" x-on:click="$dispatch('close')"
-                        class="px-4 py-2 border border-gray-300 600 rounded-md shadow-sm text-sm font-medium text-gray-700 300 bg-white 700 hover:bg-gray-50 gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        Batal
-                    </button>
+                    <a href="{{route('Pemasukan.index')}}"><x-secondary-button>Batal</x-secondary-button></a>
                     <button type="submit"
                         class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         Update

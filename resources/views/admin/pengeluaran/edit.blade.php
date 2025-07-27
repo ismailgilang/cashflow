@@ -52,13 +52,13 @@
                 @foreach ($fields as $field => $type)
                 <div class="mt-4">
                     <x-input-label for="{{ $field }}" value="{{ $field }}" />
-                    <x-text-input id="{{ $field }}" name="{{ $field }}" type="{{ $type }}" class="mt-1 block w-full" value="{{ old($field, $pengeluaran->$field) }}" required />
+                    <x-text-input id="{{ $field }}" name="{{ $field }}" type="{{ $type }}" class="mt-1 block w-full" value="{{ old($field, $pengeluaran->$field) }}" />
                     <x-input-error class="mt-2" :messages="$errors->get($field)" />
                 </div>
                 @endforeach
 
                 <div class="mt-6 flex justify-end">
-                    <x-secondary-button x-on:click="$dispatch('close')">Batal</x-secondary-button>
+                    <a href="{{route('Pengeluaran.index')}}"><x-secondary-button>Batal</x-secondary-button></a>
                     <x-primary-button class="ml-3">Update</x-primary-button>
                 </div>
             </form>

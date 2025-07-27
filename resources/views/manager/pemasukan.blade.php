@@ -3,7 +3,7 @@
         <h1 class="text-3xl font-semibold mb-6 text-gray-800">Pemasukan</h1>
         
         <div class="container mx-auto p-4">
-            <h1 class="text-xl font-semibold mb-4">Kode Akun</h1>
+            <h1 class="text-xl font-semibold mb-4">Data Pemasukan</h1>
 
             <!-- Search input -->
             <div class="flex justify-between items-center">
@@ -49,11 +49,11 @@
                             <td class="p-2 border text-center">{{ $item->kode_akun }}</td>
                             <td class="p-2 border text-center">{{ $item->keterangan }}</td>
                             <td class="p-2 border">{{ $item->tanggal }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($item->omset_konter, 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($item->omset_retail, 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($item->investor, 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($item->refund, 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($item->pemindahan_dana, 0, ',', '.') }}</td>
+                            <td class="p-2 border">{{ $item->omset_konter !== null ? 'Rp.' . number_format($item->omset_konter, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $item->omset_retail !== null ? 'Rp.' . number_format($item->omset_retail, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $item->investor !== null ? 'Rp.' . number_format($item->investor, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $item->refund !== null ? 'Rp.' . number_format($item->refund, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $item->pemindahan_dana !== null ? 'Rp.' . number_format($item->pemindahan_dana, 0, ',', '.') : '' }}</td>
                             <td class="p-2 border text-center">
                                 @if($item->status === 'disetujui')
                                     <span class="inline-block px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">Disetujui</span>

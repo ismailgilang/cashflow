@@ -9,13 +9,13 @@
                 <div class="mb-4">
                     <label for="kode_akun" class="block text-sm font-medium text-gray-700">Kode Akun</label>
                     <input type="text" name="kode_akun" id="kode_akun" value="{{ old('kode_akun', $kode->kode_akun) }}"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
                 </div>
 
                 <!-- Keterangan -->
                 <div class="mb-4">
                     <label for="keterangan" class="block text-sm font-medium text-gray-700">Keterangan</label>
-                    <textarea name="keterangan" id="keterangan" rows="3"
+                    <textarea name="keterangan" id="keterangan" rows="3" required
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">{{ old('keterangan', $kode->keterangan) }}</textarea>
                 </div>
 

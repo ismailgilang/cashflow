@@ -106,20 +106,20 @@
                             <td class="p-2 border whitespace-nowrap text-center">{{ $item->kode_akun }}</td>
                             <td class="p-2 border whitespace-nowrap text-center">{{ $item->keterangan }}</td>
                             <td class="p-2 border whitespace-nowrap">{{ $item->tanggal }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->gaji, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->biaya_kirim, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->transportasi, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->lpti, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->atk, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->bahan, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->peralatan, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->lain_lain, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->invest, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->vendor, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->profit, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->cicilan, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->pajak, 0, ',', '.') }}</td>
-                            <td class="p-2 border whitespace-nowrap">Rp.{{ number_format($item->pemindahan, 0, ',', '.') }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->gaji !== null ? 'Rp.' . number_format($item->gaji, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->biaya_kirim !== null ? 'Rp.' . number_format($item->biaya_kirim, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->transportasi !== null ? 'Rp.' . number_format($item->transportasi, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->lpti !== null ? 'Rp.' . number_format($item->lpti, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->atk !== null ? 'Rp.' . number_format($item->atk, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->bahan !== null ? 'Rp.' . number_format($item->bahan, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->peralatan !== null ? 'Rp.' . number_format($item->peralatan, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->lain_lain !== null ? 'Rp.' . number_format($item->lain_lain, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->invest !== null ? 'Rp.' . number_format($item->invest, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->vendor !== null ? 'Rp.' . number_format($item->vendor, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->profit !== null ? 'Rp.' . number_format($item->profit, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->cicilan !== null ? 'Rp.' . number_format($item->cicilan, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->pajak !== null ? 'Rp.' . number_format($item->pajak, 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border whitespace-nowrap">{{ $item->pemindahan !== null ? 'Rp.' . number_format($item->pemindahan, 0, ',', '.') : '' }}</td>
                             <td class="p-2 border text-center">
                                 @if($item->status === 'disetujui')
                                     <span class="inline-block px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">Disetujui</span>
@@ -152,20 +152,20 @@
                         @endforeach
                         <tr class="font-bold bg-purple-500/30">
                             <td colspan="4" class="text-left p-2 border">Total</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('gaji'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('biaya_kirim'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('transportasi'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('lpti'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('atk'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('bahan'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('peralatan'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('lain_lain'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('invest'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('vendor'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('profit'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('cicilan'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('pajak'), 0, ',', '.') }}</td>
-                            <td class="p-2 border">Rp.{{ number_format($data->sum('pemindahan'), 0, ',', '.') }}</td>
+                            <td class="p-2 border">{{ $data->sum('gaji') >0 ? 'Rp.' . number_format($data->sum('gaji'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('biaya_kirim') >0 ? 'Rp.' . number_format($data->sum('biaya_kirim'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('transportasi') >0 ? 'Rp.' . number_format($data->sum('transportasi'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('lpti') >0 ? 'Rp.' . number_format($data->sum('lpti'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('atk') >0 ? 'Rp.' . number_format($data->sum('atk'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('bahan') >0 ? 'Rp.' . number_format($data->sum('bahan'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('peralatan') >0 ? 'Rp.' . number_format($data->sum('peralatan'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('lain_lain') >0 ? 'Rp.' . number_format($data->sum('lain_lain'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('invest') >0 ? 'Rp.' . number_format($data->sum('invest'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('vendor') >0 ? 'Rp.' . number_format($data->sum('vendor'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('profit') >0 ? 'Rp.' . number_format($data->sum('profit'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('cicilan') >0 ? 'Rp.' . number_format($data->sum('cicilan'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('pajak') >0 ? 'Rp.' . number_format($data->sum('pajak'), 0, ',', '.') : '' }}</td>
+                            <td class="p-2 border">{{ $data->sum('pemindahan') > 0 ? 'Rp.' . number_format($data->sum('pemindahan'), 0, ',', '.') : '' }}</td>
                             <td class="p-2 border"></td>
                         </tr>
                         @php
@@ -186,10 +186,13 @@
                         @endphp
                         <tr class="font-bold bg-purple-500/40">
                             <td colspan="17" class="text-left p-2 border">Saldo Pengeluaran</td>
-                            <td class="p-2 border font-bold">Rp.{{ number_format($totalPengeluaran, 0, ',', '.') }}</td>
+                            <td class="p-2 border font-bold">{{ $totalPengeluaran !== null ? 'Rp.' . number_format($totalPengeluaran, 0, ',', '.') : '' }}</td>
                             <td class="p-2 border"></td>
                         </tr>
                     </tbody>
+                    <tr id="noDataRow" style="display: none;">
+                        <td colspan="4" class="text-center p-2 border">Data tidak ditemukan</td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -330,10 +333,20 @@
         document.getElementById('searchInput').addEventListener('input', function() {
             let filter = this.value.toLowerCase();
             let rows = document.querySelectorAll('#kodeTable tr');
+            let found = false;
+
             rows.forEach(row => {
                 let text = row.innerText.toLowerCase();
-                row.style.display = text.includes(filter) ? '' : 'none';
+                if (text.includes(filter)) {
+                    row.style.display = '';
+                    found = true;
+                } else {
+                    row.style.display = 'none';
+                }
             });
+
+            // Tampilkan atau sembunyikan pesan "Data tidak ditemukan"
+            document.getElementById('noDataRow').style.display = found ? 'none' : '';
         });
     </script>
     <script>
