@@ -113,10 +113,11 @@ class SuperController extends Controller
             $pemasukan = Pemasukan::whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->where('status', 'disetujui')->get();
             $pengeluaran = Pengeluaran::whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->where('status', 'disetujui')->get();
 
-            $labaRugi = ($pemasukan->sum("omset_konter") - $pemasukan->sum("omset_retail"))
-                    - ($pemasukan->sum("omset_konter") + $pemasukan->sum("omset_retail"))
-                    - ($pengeluaran->sum("gaji") + $pengeluaran->sum("atk") + $pengeluaran->sum("lpti") + $pengeluaran->sum("lain_lain"));
-
+            $totalOmset = $pemasukan->sum("omset_konter") + $pemasukan->sum("omset_retail") + $pemasukan->sum("investor") + $pemasukan->sum("refund") + $pemasukan->sum("pemindahan_dana") ;
+            $totalPengeluaran = $pengeluaran->sum("gaji") + $pengeluaran->sum("atk") + $pengeluaran->sum("lpti") + $pengeluaran->sum("peralatan") + $pengeluaran->sum("lain_lain");
+            
+            $labaRugi = $totalOmset - ($totalOmset * 0.65) - $totalPengeluaran;
+            
             $dataLabaRugi->push([
                 'bulan' => Carbon::create()->month($bulan)->format('M'),
                 'nilai' => $labaRugi
