@@ -195,14 +195,16 @@
                     </thead>
                     <tbody>
                         @foreach($data as $d)
-                            <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
-                                <td class="px-4 py-2">{{ $loop->iteration }}</td>
-                                <td class="px-4 py-2">{{ $d->kode_akun }}</td>
-                                <td class="px-4 py-2">{{ $d->keterangan }}</td>
-                                <td class="px-4 py-2 text-right font-medium text-gray-900">
-                                    Rp {{ number_format($d->omset_konter, 0, ',', '.') }}
-                                </td>
-                            </tr>
+                            @if(!is_null($d->omset_konter) && $d->omset_konter != 0)
+                                <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
+                                    <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                                    <td class="px-4 py-2">{{ $d->kode_akun }}</td>
+                                    <td class="px-4 py-2">{{ $d->keterangan }}</td>
+                                    <td class="px-4 py-2 text-right font-medium text-gray-900">
+                                        Rp {{ number_format($d->omset_konter, 0, ',', '.') }}
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -228,6 +230,7 @@
                     </thead>
                     <tbody>
                         @foreach($data as $d)
+                            @if(!is_null($d->omset_retail + $d->investor + $d->refund + $d->pemindahan_dana) && $d->omset_retail + $d->investor + $d->refund + $d->pemindahan_dana != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -236,6 +239,7 @@
                                     Rp {{ number_format($d->omset_retail + $d->investor + $d->refund + $d->pemindahan_dana , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -260,6 +264,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->gaji) && $dd->gaji != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -268,6 +273,7 @@
                                     Rp {{ number_format($dd->gaji , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -292,6 +298,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->atk + $dd->peralatan + $dd->lpti) && $dd->atk + $dd->peralatan + $dd->lpti != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -300,6 +307,7 @@
                                     Rp {{ number_format($dd->atk + $dd->peralatan + $dd->lpti , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -324,6 +332,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->lain_lain) && $dd->lain_lain != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -332,6 +341,7 @@
                                     Rp {{ number_format($dd->lain_lain , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -356,6 +366,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->bahan) && $dd->bahan != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -364,6 +375,7 @@
                                     Rp {{ number_format($dd->bahan , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -388,6 +400,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->transportasi) && $dd->transportasi != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -396,6 +409,7 @@
                                     Rp {{ number_format($dd->transportasi , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -420,6 +434,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->biaya_kirim) && $dd->biaya_kirim != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -428,6 +443,7 @@
                                     Rp {{ number_format($dd->biaya_kirim , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -452,6 +468,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->vendor) && $dd->vendor != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -460,6 +477,7 @@
                                     Rp {{ number_format($dd->vendor , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -484,6 +502,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->invest) && $dd->invest != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -492,6 +511,7 @@
                                     Rp {{ number_format($dd->invest , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -516,6 +536,7 @@
                     </thead>
                     <tbody>
                         @foreach($data2 as $dd)
+                            @if(!is_null($dd->cicilan) && $dd->cicilan != 0)
                             <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-blue-50 transition">
                                 <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                 <td class="px-4 py-2">{{ $d->kode_akun }}</td>
@@ -524,6 +545,7 @@
                                     Rp {{ number_format($dd->cicilan , 0, ',', '.') }}
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

@@ -34,8 +34,8 @@ class LaporanController extends Controller
 
 
         // Ambil data
-        $data = $queryPemasukan->get();
-        $data2 = $queryPengeluaran->get();
+        $data = $queryPemasukan->where('status', 'disetujui')->get();
+        $data2 = $queryPengeluaran->where('status', 'disetujui')->get();
 
         // Hitung total omset
         $yogya = $data->sum('omset_konter');

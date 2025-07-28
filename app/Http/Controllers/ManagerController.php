@@ -42,8 +42,8 @@ class ManagerController extends Controller
         // Jika filter kosong atau tidak dikenali => semua data (tanpa where)
 
         // Eksekusi query
-        $pemasukanFiltered = $pemasukanFilter->get();
-        $pengeluaranFiltered = $pengeluaranFilter->get();
+        $pemasukanFiltered = $pemasukanFilter->where('status', 'disetujui')->get();
+        $pengeluaranFiltered = $pengeluaranFilter->where('status', 'disetujui')->get();
 
         $totalPemasukan = $pemasukanFiltered->sum('omset_konter')
             + $pemasukanFiltered->sum('omset_retail')
@@ -70,6 +70,7 @@ class ManagerController extends Controller
         // ========= SALDO PLUS dan MINUS BULAN INI (tidak tergantung filter) =========
         $pemasukanBulanIni = Pemasukan::whereMonth('tanggal', $now->month)
             ->whereYear('tanggal', $now->year)
+            ->where('status', 'disetujui')
             ->get();
 
         $saldoplus = $pemasukanBulanIni->sum('omset_konter')
@@ -79,6 +80,7 @@ class ManagerController extends Controller
 
         $pengeluaranBulanIni = Pengeluaran::whereMonth('tanggal', $now->month)
             ->whereYear('tanggal', $now->year)
+            ->where('status', 'disetujui')
             ->get();
 
         $saldominus = $pengeluaranBulanIni->sum('gaji')
@@ -110,8 +112,8 @@ class ManagerController extends Controller
         $dataLabaRugi = collect();
 
         foreach (range(1, 12) as $bulan) {
-            $pemasukan = Pemasukan::whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->get();
-            $pengeluaran = Pengeluaran::whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->get();
+            $pemasukan = Pemasukan::whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->where('status', 'disetujui')->get();
+            $pengeluaran = Pengeluaran::whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->where('status', 'disetujui')->get();
 
             $labaRugi = ($pemasukan->sum("omset_konter") - $pemasukan->sum("omset_retail"))
                     - ($pemasukan->sum("omset_konter") + $pemasukan->sum("omset_retail"))
@@ -219,7 +221,7 @@ class ManagerController extends Controller
         $data->status = "ditolak";
         $data->update(); // Penting: menyimpan perubahan
 
-        return redirect()->route('manager.create2')->with('success', 'Data berhasil disetujui.');
+        return redirect()->route('manager.create2')->with('success', 'Data Transaksi Di tolak.');
     }
     public function edit22(string $id)
     {
@@ -227,7 +229,7 @@ class ManagerController extends Controller
         $data->status = "ditolak";
         $data->update(); // Penting: menyimpan perubahan
 
-        return redirect()->route('manager.create')->with('success', 'Data berhasil disetujui.');
+        return redirect()->route('manager.create')->with('success', 'Data Transaksi Di tolak.');
     }
 
     /**
