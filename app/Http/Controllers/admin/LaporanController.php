@@ -53,7 +53,7 @@ class LaporanController extends Controller
         $refund = $data->sum('refund');
         $pemindahan = $data->sum('pemindahan_dana');
 
-        $omsetretail = $retail + $pengeluarankas + $refund + $pemindahan;
+        $omsetretail = $data->sum('omset_retail') + $data->sum('investor') + $data->sum('refund') + $data->sum('pemindahan_dana');
 
         $gaji = $data2->sum('gaji');
         $operasional = $data2->sum('atk') + $peralatan + $data2->sum('lpti');
