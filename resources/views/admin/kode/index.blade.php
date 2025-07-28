@@ -64,7 +64,7 @@
     <x-modal name="tambah-user" focusable>
         <form method="POST" action="{{ route('Kode.store') }}" class="p-6">
             @csrf
-            <h2 class="text-lg font-medium text-black">Tambah User Baru</h2>
+            <h2 class="text-lg font-medium text-black">Tambah Kode Akun</h2>
 
             <div class="mt-4">
                 <x-input-label for="kode_akun" value="kode_akun" />
