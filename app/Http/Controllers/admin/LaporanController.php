@@ -19,7 +19,6 @@ class LaporanController extends Controller
         $periodeAkhir = $request->periode_akhir;
         $jenisLaporan = $request->jenis_laporan;
 
-        // Filter berdasarkan periode jika tersedia
         if ($periodeAwal && $periodeAkhir) {
             $startDate = \Carbon\Carbon::parse($periodeAwal)->startOfMonth();
             $endDate = \Carbon\Carbon::parse($periodeAkhir)->endOfMonth();
@@ -30,25 +29,18 @@ class LaporanController extends Controller
             $startDate = \Carbon\Carbon::parse($periodeAkhir)->startOfMonth();
             $endDate = \Carbon\Carbon::parse($periodeAkhir)->endOfMonth();
         } else {
-            // Kalau dua-duanya kosong, bisa skip filter
             $startDate = null;
             $endDate = null;
         }
 
         if ($startDate && $endDate) {
-            $queryPemasukan = Pemasukan::whereBetween('created_at', [$startDate, $endDate]);
-            $queryPengeluaran = Pengeluaran::whereBetween('created_at', [$startDate, $endDate]);
+            $queryPemasukan = Pemasukan::whereBetween('tanggal', [$startDate, $endDate]);
+            $queryPengeluaran = Pengeluaran::whereBetween('tanggal', [$startDate, $endDate]);
         } else {
             $queryPemasukan = Pemasukan::query();
             $queryPengeluaran = Pengeluaran::query();
         }
 
-        if (isset($startDate) && isset($endDate)) {
-            $queryPemasukan->whereBetween('created_at', [$startDate, $endDate]);
-            $queryPengeluaran->whereBetween('created_at', [$startDate, $endDate]);
-        }
-        
-        // Ambil data
         $data = $queryPemasukan->where('status', 'disetujui')->get();
         $data2 = $queryPengeluaran->where('status', 'disetujui')->get();
 
