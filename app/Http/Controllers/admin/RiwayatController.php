@@ -19,22 +19,39 @@ class RiwayatController extends Controller
         $periodeAkhir = $request->periode_akhir;
         $jenisLaporan = $request->jenis_laporan;
 
-        // Inisialisasi query
-        $queryPemasukan = Pemasukan::query();
-        $queryPengeluaran = Pengeluaran::query();
-
-        // Filter berdasarkan periode jika tersedia
         if ($periodeAwal && $periodeAkhir) {
             $startDate = \Carbon\Carbon::parse($periodeAwal)->startOfMonth();
             $endDate = \Carbon\Carbon::parse($periodeAkhir)->endOfMonth();
+        } elseif ($periodeAwal && !$periodeAkhir) {
+            $startDate = \Carbon\Carbon::parse($periodeAwal)->startOfMonth();
+            $endDate = \Carbon\Carbon::parse($periodeAwal)->endOfMonth();
+        } elseif (!$periodeAwal && $periodeAkhir) {
+            $startDate = \Carbon\Carbon::parse($periodeAkhir)->startOfMonth();
+            $endDate = \Carbon\Carbon::parse($periodeAkhir)->endOfMonth();
+        } else {
+            // Kalau dua-duanya kosong, bisa skip filter
+            $startDate = null;
+            $endDate = null;
+        }
 
+        if ($startDate && $endDate) {
+            $queryPemasukan = Pemasukan::whereBetween('created_at', [$startDate, $endDate]);
+            $queryPengeluaran = Pengeluaran::whereBetween('created_at', [$startDate, $endDate]);
+        } else {
+            $queryPemasukan = Pemasukan::query();
+            $queryPengeluaran = Pengeluaran::query();
+        }
+
+        if (isset($startDate) && isset($endDate)) {
             $queryPemasukan->whereBetween('created_at', [$startDate, $endDate]);
             $queryPengeluaran->whereBetween('created_at', [$startDate, $endDate]);
         }
 
-        // Ambil data
-        $data = $queryPemasukan->get();
-        $data2 = $queryPengeluaran->get();
+        $data = $queryPemasukan->where('status', 'disetujui')->get();
+        $data2 = $queryPengeluaran->where('status', 'disetujui')->get();
+
+        $periodeAwal = $startDate ? $startDate->format('d F Y') : null;
+        $periodeAkhir = $endDate ? $endDate->format('d F Y') : null;
 
         // Hitung total omset
         $yogya = $data->sum('omset_konter');
