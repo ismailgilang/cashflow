@@ -132,17 +132,19 @@
                                 @endif
                             </td>
                             <td class="p-2 border text-center">
-                                <!-- Tombol Edit -->
-                                <div class="flex gap-2">
-                                    <a href="{{ route('Pengeluaran.edit', $item->id) }}" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                                <div class="flex gap-2 justify-center">
+                                    <!-- Tombol Edit -->
+                                    <a href="{{ route('Pengeluaran.edit', $item->id) }}" 
+                                    class="bg-blue-500 text-white w-8 h-8 rounded flex items-center justify-center hover:bg-blue-600 transition">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
                                     <!-- Tombol Delete -->
-                                    <form id="delete-form-{{ $item->id }}" action="{{ route('Pengeluaran.destroy', $item->id) }}" method="POST" class="inline">
+                                    <form id="delete-form-{{ $item->id }}" action="{{ route('Pengeluaran.destroy', $item->id) }}" method="POST" class="flex">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="confirmDelete({{ $item->id }})">
+                                        <button type="button" 
+                                                class="bg-red-500 text-white w-8 h-8 rounded flex items-center justify-center hover:bg-red-600 transition" onclick="confirmDelete({{ $item->id }})">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
@@ -239,85 +241,99 @@
 
             <div class="mt-4">
                 <x-input-label for="gaji" value="gaji" />
-                <x-text-input id="gaji" name="gaji" type="text" class="mt-1 block w-full" />
+                <x-text-input id="gaji" name="gaji" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('gaji')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="biaya_kirim" value="biaya_kirim" />
-                <x-text-input id="biaya_kirim" name="biaya_kirim" type="text" class="mt-1 block w-full" />
+                <x-text-input id="biaya_kirim" name="biaya_kirim" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('biaya_kirim')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="transportasi" value="transportasi" />
-                <x-text-input id="transportasi" name="transportasi" type="text" class="mt-1 block w-full" />
+                <x-text-input id="transportasi" name="transportasi" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('transportasi')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="lpti" value="lpti" />
-                <x-text-input id="lpti" name="lpti" type="text" class="mt-1 block w-full" />
+                <x-text-input id="lpti" name="lpti" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('lpti')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="atk" value="atk" />
-                <x-text-input id="atk" name="atk" type="text" class="mt-1 block w-full" />
+                <x-text-input id="atk" name="atk" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('atk')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="bahan" value="bahan" />
-                <x-text-input id="bahan" name="bahan" type="text" class="mt-1 block w-full" />
+                <x-text-input id="bahan" name="bahan" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('bahan')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="peralatan" value="peralatan" />
-                <x-text-input id="peralatan" name="peralatan" type="text" class="mt-1 block w-full" />
+                <x-text-input id="peralatan" name="peralatan" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('peralatan')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="lain_lain" value="lain_lain" />
-                <x-text-input id="lain_lain" name="lain_lain" type="text" class="mt-1 block w-full" />
+                <x-text-input id="lain_lain" name="lain_lain" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('lain_lain')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="invest" value="invest" />
-                <x-text-input id="invest" name="invest" type="text" class="mt-1 block w-full" />
+                <x-text-input id="invest" name="invest" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('invest')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="vendor" value="vendor" />
-                <x-text-input id="vendor" name="vendor" type="text" class="mt-1 block w-full" />
+                <x-text-input id="vendor" name="vendor" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('vendor')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="profit" value="profit" />
-                <x-text-input id="profit" name="profit" type="text" class="mt-1 block w-full" />
+                <x-text-input id="profit" name="profit" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('profit')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="cicilan" value="cicilan" />
-                <x-text-input id="cicilan" name="cicilan" type="text" class="mt-1 block w-full" />
+                <x-text-input id="cicilan" name="cicilan" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('cicilan')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="pajak" value="pajak" />
-                <x-text-input id="pajak" name="pajak" type="text" class="mt-1 block w-full" />
+                <x-text-input id="pajak" name="pajak" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('pajak')" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="pemindahan" value="pemindahan" />
-                <x-text-input id="pemindahan" name="pemindahan" type="text" class="mt-1 block w-full" />
+                <x-text-input id="pemindahan" name="pemindahan" type="text" class="mt-1 block w-full"
+                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                 <x-input-error class="mt-2" :messages="$errors->get('pemindahan')" />
             </div>
 

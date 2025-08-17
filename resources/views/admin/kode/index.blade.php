@@ -67,8 +67,19 @@
             <h2 class="text-lg font-medium text-black">Tambah Kode Akun</h2>
 
             <div class="mt-4">
-                <x-input-label for="kode_akun" value="kode_akun" />
-                <x-text-input id="kode_akun" name="kode_akun" type="text" class="mt-1 block w-full" required autofocus />
+                <x-input-label for="kode_akun" value="Kode Akun" />
+                <x-text-input 
+                    id="kode_akun" 
+                    name="kode_akun" 
+                    type="text" 
+                    class="mt-1 block w-full" 
+                    maxlength="4" 
+                    pattern="\d{4}" 
+                    inputmode="numeric"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,4)"
+                    required 
+                    autofocus 
+                />
                 <x-input-error class="mt-2" :messages="$errors->get('kode_akun')" />
             </div>
 

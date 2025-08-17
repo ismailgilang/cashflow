@@ -5,11 +5,22 @@
             <form action="{{ route('Kode.update', $kode->id) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <!-- Kode Akun -->
-                <div class="mb-4">
-                    <label for="kode_akun" class="block text-sm font-medium text-gray-700">Kode Akun</label>
-                    <input type="text" name="kode_akun" id="kode_akun" value="{{ old('kode_akun', $kode->kode_akun) }}"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+                <div class="mt-4">
+                    <x-input-label for="kode_akun" value="Kode Akun" />
+                    <x-text-input 
+                        id="kode_akun" 
+                        name="kode_akun" 
+                        value="{{ old('kode_akun', $kode->kode_akun) }}"
+                        type="text" 
+                        class="mt-1 block w-full" 
+                        maxlength="4" 
+                        pattern="\d{4}" 
+                        inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,4)"
+                        required 
+                        autofocus 
+                    />
+                    <x-input-error class="mt-2" :messages="$errors->get('kode_akun')" />
                 </div>
 
                 <!-- Keterangan -->

@@ -115,17 +115,20 @@
                                 @endif
                             </td>
                             <td class="p-2 border text-center">
-                                <!-- Tombol Edit -->
-                                <div class="flex gap-2">
-                                    <a href="{{ route('Pemasukan.edit', $item->id) }}" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                                <div class="flex gap-2 justify-center">
+                                    <!-- Tombol Edit -->
+                                    <a href="{{ route('Pemasukan.edit', $item->id) }}" 
+                                    class="bg-blue-500 text-white w-8 h-8 rounded flex items-center justify-center hover:bg-blue-600 transition">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
                                     <!-- Tombol Delete -->
-                                    <form id="delete-form-{{ $item->id }}" action="{{ route('Pemasukan.destroy', $item->id) }}" method="POST" class="inline">
+                                    <form action="{{ route('Pemasukan.destroy', $item->id) }}" method="POST" 
+                                        class="flex">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="confirmDelete({{ $item->id }})">
+                                        <button type="button" 
+                                                class="bg-red-500 text-white w-8 h-8 rounded flex items-center justify-center hover:bg-red-600 transition" onclick="confirmDelete({{ $item->id }})">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
@@ -201,34 +204,70 @@
             </div>
 
             <div class="mt-4">
-                <x-input-label for="omset_konter" value="omset_konter" />
-                <x-text-input id="omset_konter" name="omset_konter" type="text" class="mt-1 block w-full" />
+                <x-input-label for="omset_konter" value="Omset Konter" />
+                <x-text-input 
+                    id="omset_konter" 
+                    name="omset_konter" 
+                    type="text" 
+                    class="mt-1 block w-full" 
+                    inputmode="numeric"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                />
                 <x-input-error class="mt-2" :messages="$errors->get('omset_konter')" />
             </div>
 
             <div class="mt-4">
-                <x-input-label for="omset_retail" value="omset_retail" />
-                <x-text-input id="omset_retail" name="omset_retail" type="text" class="mt-1 block w-full" />
+                <x-input-label for="omset_retail" value="Omset Retail" />
+                <x-text-input 
+                    id="omset_retail" 
+                    name="omset_retail" 
+                    type="text" 
+                    class="mt-1 block w-full" 
+                    inputmode="numeric"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                />
                 <x-input-error class="mt-2" :messages="$errors->get('omset_retail')" />
             </div>
 
             <div class="mt-4">
-                <x-input-label for="investor" value="investor" />
-                <x-text-input id="investor" name="investor" type="text" class="mt-1 block w-full" />
+                <x-input-label for="investor" value="Investor" />
+                <x-text-input 
+                    id="investor" 
+                    name="investor" 
+                    type="text" 
+                    class="mt-1 block w-full" 
+                    inputmode="numeric"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                />
                 <x-input-error class="mt-2" :messages="$errors->get('investor')" />
             </div>
 
             <div class="mt-4">
-                <x-input-label for="refund" value="refund" />
-                <x-text-input id="refund" name="refund" type="text" class="mt-1 block w-full" />
+                <x-input-label for="refund" value="Refund" />
+                <x-text-input 
+                    id="refund" 
+                    name="refund" 
+                    type="text" 
+                    class="mt-1 block w-full" 
+                    inputmode="numeric"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                />
                 <x-input-error class="mt-2" :messages="$errors->get('refund')" />
             </div>
 
             <div class="mt-4">
-                <x-input-label for="pemindahan_dana" value="pemindahan_dana" />
-                <x-text-input id="pemindahan_dana" name="pemindahan_dana" type="text" class="mt-1 block w-full" />
+                <x-input-label for="pemindahan_dana" value="Pemindahan Dana" />
+                <x-text-input 
+                    id="pemindahan_dana" 
+                    name="pemindahan_dana" 
+                    type="text" 
+                    class="mt-1 block w-full" 
+                    inputmode="numeric"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                />
                 <x-input-error class="mt-2" :messages="$errors->get('pemindahan_dana')" />
             </div>
+
 
             <div class="mt-6 flex justify-end">
                 <x-secondary-button x-on:click="$dispatch('close')">Batal</x-secondary-button>

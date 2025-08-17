@@ -52,7 +52,9 @@
                 @foreach ($fields as $field => $type)
                 <div class="mt-4">
                     <x-input-label for="{{ $field }}" value="{{ $field }}" />
-                    <x-text-input id="{{ $field }}" name="{{ $field }}" type="{{ $type }}" class="mt-1 block w-full" value="{{ old($field, $pengeluaran->$field) }}" />
+                    <x-text-input id="{{ $field }}" name="{{ $field }}" type="{{ $type }}" class="mt-1 block w-full" value="{{ old($field, $pengeluaran->$field) }}" 
+                    inputmode="numeric"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
                     <x-input-error class="mt-2" :messages="$errors->get($field)" />
                 </div>
                 @endforeach

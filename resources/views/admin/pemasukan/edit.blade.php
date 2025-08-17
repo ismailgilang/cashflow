@@ -41,10 +41,12 @@
 
                 <!-- Omset Konter Input -->
                 <div class="space-y-2">
-                    <label for="omset_konter" class="block text-sm font-medium text-gray-700 300">Omset Konter</label>
+                    <label for="omset_konter" class="block text-sm font-medium text-gray-700">Omset Konter</label>
                     <input id="omset_konter" name="omset_konter" type="text"
-                        class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        value="{{ $pemasukan->omset_konter ?? '' }}">
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        value="{{ $pemasukan->omset_konter ?? '' }}"
+                        inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     @error('omset_konter')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -52,10 +54,12 @@
 
                 <!-- Omset Retail Input -->
                 <div class="space-y-2">
-                    <label for="omset_retail" class="block text-sm font-medium text-gray-700 300">Omset Retail</label>
+                    <label for="omset_retail" class="block text-sm font-medium text-gray-700">Omset Retail</label>
                     <input id="omset_retail" name="omset_retail" type="text"
-                        class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        value="{{ $pemasukan->omset_retail ?? '' }}">
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        value="{{ $pemasukan->omset_retail ?? '' }}"
+                        inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     @error('omset_retail')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -63,10 +67,12 @@
 
                 <!-- Investor Input -->
                 <div class="space-y-2">
-                    <label for="investor" class="block text-sm font-medium text-gray-700 300">Investor</label>
+                    <label for="investor" class="block text-sm font-medium text-gray-700">Investor</label>
                     <input id="investor" name="investor" type="text"
-                        class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        value="{{ $pemasukan->investor ?? '' }}">
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        value="{{ $pemasukan->investor ?? '' }}"
+                        inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     @error('investor')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -74,10 +80,12 @@
 
                 <!-- Refund Input -->
                 <div class="space-y-2">
-                    <label for="refund" class="block text-sm font-medium text-gray-700 300">Refund</label>
+                    <label for="refund" class="block text-sm font-medium text-gray-700">Refund</label>
                     <input id="refund" name="refund" type="text"
-                        class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        value="{{ $pemasukan->refund ?? '' }}">
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        value="{{ $pemasukan->refund ?? '' }}"
+                        inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     @error('refund')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -85,10 +93,12 @@
 
                 <!-- Pemindahan Dana Input -->
                 <div class="space-y-2">
-                    <label for="pemindahan_dana" class="block text-sm font-medium text-gray-700 300">Pemindahan Dana</label>
+                    <label for="pemindahan_dana" class="block text-sm font-medium text-gray-700">Pemindahan Dana</label>
                     <input id="pemindahan_dana" name="pemindahan_dana" type="text"
-                        class="w-full rounded-md border-gray-300 600 700 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        value="{{ $pemasukan->pemindahan_dana ?? '' }}">
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        value="{{ $pemasukan->pemindahan_dana ?? '' }}"
+                        inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     @error('pemindahan_dana')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
