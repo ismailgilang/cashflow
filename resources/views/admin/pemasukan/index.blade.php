@@ -123,7 +123,7 @@
                                     </a>
 
                                     <!-- Tombol Delete -->
-                                    <form action="{{ route('Pemasukan.destroy', $item->id) }}" method="POST" 
+                                    <form id="delete-form-{{ $item->id }}" action="{{ route('Pemasukan.destroy', $item->id) }}" method="POST" 
                                         class="flex">
                                         @csrf
                                         @method('DELETE')
