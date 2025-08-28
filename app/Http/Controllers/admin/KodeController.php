@@ -23,12 +23,19 @@ class KodeController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        // Contoh: simpan ke database jika kamu punya model Kode
-        Kode::create($data);
+        // Cek manual apakah kode_akun sudah ada
+        $exists = Kode::where('kode_akun', $request->kode_akun)->exists();
+
+        if ($exists) {
+            return redirect()->back()->with('error', 'Kode akun sudah Digunakan!');
+        }
+
+        // Kalau belum ada → simpan
+        Kode::create($request->all());
 
         return redirect()->back()->with('success', 'Data berhasil disimpan!');
     }
+
 
     public function edit($id)
     {
