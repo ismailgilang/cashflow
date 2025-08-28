@@ -27,7 +27,7 @@ class KodeController extends Controller
         $exists = Kode::where('kode_akun', $request->kode_akun)->exists();
 
         if ($exists) {
-            return redirect()->back()->with('error', 'Kode akun sudah Digunakan!');
+            return redirect()->back()->with('error', 'Kode akun sudah ada!');
         }
 
         // Kalau belum ada → simpan
